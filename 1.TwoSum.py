@@ -9,6 +9,6 @@ class Solution(object):
         for i, num in enumerate(nums):
             remaining = target - num
             if remaining in values:
-                return [i, values[remaining]]
+                return [i, values[remaining]] # Return Ans
             else:
-                values[num] = i
+                values[num] = i # Store Value as Key and Index as Value
