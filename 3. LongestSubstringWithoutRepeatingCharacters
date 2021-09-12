@@ -1,0 +1,24 @@
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        # Sliding Window~~~~~~
+        seen = {}
+        l = 0
+        output = 0
+        for r in range(len(s)):
+            # Keep on increasing since no duplicate
+            if s[r] not in seen:
+                length = len(s[l:r+1])
+                if length > output:
+                    output = length
+            else:
+                # condition 1: Outside of current window slider, which is when index of s[r] < l
+                if seen[s[r]] < l:
+                    length = len(s[l:r+1])
+                    if length > output:
+                        output = length
+                # condition 2: Inside of current window, change l to be s[r] + 1 to avoid duplicate
+                else:
+                    l = seen[s[r]] + 1
+                # Index the new characters
+            seen[s[r]] = r
+        return output
